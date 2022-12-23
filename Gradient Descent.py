@@ -17,20 +17,17 @@ def gd(x,y):
     min = float('inf')
     thet = 0
     minepoch = 1
-    theta = np.array([[1,1,1,1,1]])
-    for epoch in range (1,10000):
+    theta = np.array([[1],[1],[1],[1],[1]])
+    for epoch in range (1,100000):
         h=0
-        err = y - np.matmul(x,np.transpose(theta))
-        for k in range (len(x)):
-            h += err[k][0]*x[k]
-        cost = np.sum((err)**2)
+        err = y - np.dot(x,theta)
+        temp = np.array([(np.sum(np.multiply(err,x),0))])
         alpha = 0.828134/1000000*math.exp(-epoch/25)
-        theta = theta + alpha*h
+        theta = theta + alpha*(temp.transpose())
+        cost = np.sum((err)**2)  
         if cost < min:
             thet = theta
-            min = cost
-            minepoch = epoch
-    return (min,thet,minepoch)
+    return (thet)
 theta = gd(x,y)
 print (theta)
     

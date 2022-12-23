@@ -8,16 +8,17 @@ x=[]
 y=[]
 next(data)
 for k in data:
-    x.append([1,float(k[0]),float(k[1]),float(k[2]),float(k[3]),float(k[4])])
-    y.append([float(k[5])])
+    x.append([1,float(k[0]),float(k[1]),float(k[2]),float(k[3])])
+    y.append([float(k[4])])
 data_set.close()
 x = np.array(x)
 y = np.array(y)
 def gd(x,y):
+    minerr = float('inf')
     b = np.matmul(x.transpose(), x)
     b = np.linalg.inv(b)
     c = np.matmul(b, x.transpose())
     theta = np.matmul(c, y)
-    return theta
+    return (theta)
 theta = gd(x,y)
 print (theta)
