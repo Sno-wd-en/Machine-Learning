@@ -2,26 +2,8 @@ import numpy as np
 import tensorflow as tf
 import time
 import math, csv, pandas as pd
- 
-def prob(theta, x, y):
-    num1 = math.exp(np.dot(theta[0],x))
-    num2 = math.exp(np.dot(theta[1],x))
-    if y==1:
-        return (num1/(1+num1+num2))
-    elif y==2:
-        return (num2/(1+num1+num2))
-    else:
-        return (1/(1+num1+num2))
 
-def species(s):
-    if s=="Iris-setosa":
-        return 1
-    elif s=="Iris-versicolor":
-        return 2
-    elif s=="Iris-virginica":
-        return 3
-
-df = pd.read_csv('Iris.csv')
+df = pd.read_csv("Iris.csv")
 
 df1=df.loc[:, df.columns.drop(['Id', 'Species'])]
 df2 = pd.DataFrame().assign(Id=df['Id'], Species=df['Species'])
